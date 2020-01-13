@@ -14,7 +14,7 @@ pub fn er_klar() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok().finish())
 }
 
-#[get("/tekster")]
+#[get("/syfotekster/api/tekster/")]
 pub fn tekster() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok()
         .content_type("application/json")
