@@ -1,0 +1,1 @@
+Hei! Du får denne søknaden fordi du er leder for %SYKMELDTNAVN%. Det eneste du skal gjøre er å sjekke om du ser noen feil i utfyllingen. I tilfelle gir du %SYKMELDTNAVN% beskjed om å  sende søknaden på nytt. Søknaden har også gått til virksomhetens innboks i Altinn og til NAV, så du trenger ikke sende den videre til noen.

@@ -1,0 +1,1 @@
+Her skal du oppgi om du var borte fra jobb på grunn av sykdom før %DATO%. Det inkluderer eventuelle dager med egenmelding du har sendt til NAV og eventuelle sykmeldinger som du bare har fått på papir. Du trenger ikke å opplyse om fravær mer enn to måneder tilbake i tid fra %DATO%.

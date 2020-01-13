@@ -1,0 +1,1 @@
+Du har sendt en ny oppfølgingsplan til din arbeidsgiver: <b>%ARBEIDSGIVER%</b> for godkjenning.

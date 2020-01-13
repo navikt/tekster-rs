@@ -1,0 +1,1 @@
+Ett sykefravær kan bestå av flere perioder hvis det er mindre enn 16 dager mellom dem. Har det gått mer enn 16 dager, regnes det som et nytt sykefravær.

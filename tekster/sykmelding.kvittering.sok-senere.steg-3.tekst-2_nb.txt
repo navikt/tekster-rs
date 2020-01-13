@@ -1,0 +1,3 @@
+<p>Fikk du sykmeldingen på papir hos legen? Legg den bort. Den digitale søknaden erstatter del D av sykmeldingen på papir. Du får en melding når du må svare på noen spørsmål som brukes til å beregne sykepengene dine.</p>
+
+<p>Du får melding: %DATOER%</p>

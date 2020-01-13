@@ -1,0 +1,6 @@
+<p>Denne ordningen er aktuell hvis helsen din er slik at du kan komme tilbake i arbeid, men ikke til den jobben du hadde da du ble syk.</p>
+<ul>
+	<li>Du må i tilfelle si opp den jobben du er sykmeldt fra og melde deg som arbeidssøker hos NAV.</li>
+	<li>Du kan få sykepenger i inntil 12 uker hvis det er 12 uker eller mer igjen av de 52 ukene du maksimalt kan få sykepenger.</li>
+	<li>Du kan snakke med veilederen på NAV-kontoret om hva som kan gjøre det lettere for deg å komme i ny jobb.</li>
+</ul>

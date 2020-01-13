@@ -1,0 +1,1 @@
+Du får denne sykmeldingen fordi du er leder for %NAVN%. Du trenger ikke sende den videre – de hos dere som sjekker Altinn finner den der. Men sjekk gjerne om du ser noen anbefalinger fra den som har sykmeldt %NAVN%. Og så? Da er det bare å følge sykefraværsrutinene hos dere.

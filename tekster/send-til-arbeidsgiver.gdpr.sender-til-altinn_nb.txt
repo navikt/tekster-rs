@@ -1,0 +1,1 @@
+Vi sender sykmeldingen til bedriftens innboks i Altinn.

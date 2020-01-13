@@ -1,0 +1,7 @@
+<p>Arbeidsavklaringspenger er den vanligste støtten etter sykepenger.</p>
+
+<ul>
+	<li>Du går ikke automatisk over på arbeidsavklaringspenger, du må selv søke om det.</li>
+	<li>Arbeidsevnen din må i så fall være nedsatt med minst 50 prosent på grunn av sykdom eller skade.</li>
+	<li>Målet er at du skal klare å gå tilbake til jobb eller skaffe deg arbeid i løpet av perioden du får arbeidsavklaringspenger og gjennomfører en aktivitetsplan.</li>
+</ul>

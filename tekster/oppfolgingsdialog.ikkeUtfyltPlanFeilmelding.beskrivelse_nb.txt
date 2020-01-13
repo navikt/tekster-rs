@@ -1,0 +1,1 @@
+For å kunne opprette en ny oppfølgingsplan må den inneholde minst en arbeidsoppgave og et tiltak.

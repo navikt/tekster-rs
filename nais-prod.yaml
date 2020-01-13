@@ -1,0 +1,29 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: syfotekster
+  namespace: default
+  labels:
+    team: flex
+spec:
+  image: {{ image }}
+  port: 8080
+  ingresses:
+    - "https://syfoapi.nav.no/syfotekster/api"
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 50
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  liveness:
+    path: /is_alive
+    intialDelay: 60
+  readiness:
+    path: /is_ready
+    initialDelay: 60

@@ -1,0 +1,4 @@
+<h2>Hvorfor må du vente med å søke?</h2>
+<p>Det er vanskelig å forutsi hva som skjer mens du er sykmeldt.
+   Noen finner ut at de klarer å jobbe mer enn sykmeldingen sier.
+   For at vi skal kunne utbetale riktig må vi vite hvordan det gikk.</p>

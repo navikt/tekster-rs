@@ -1,0 +1,1 @@
+%BEHANDLINGSDAGER% behandlingsdag i løpet av %DAGER% dager

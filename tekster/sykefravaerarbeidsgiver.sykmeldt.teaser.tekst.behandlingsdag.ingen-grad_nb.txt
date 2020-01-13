@@ -1,0 +1,1 @@
+%BEHANDLINGSDAGER% behandlingsdag før <strong>%TOMDATO%</strong>

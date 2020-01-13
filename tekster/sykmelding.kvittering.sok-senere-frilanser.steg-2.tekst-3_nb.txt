@@ -1,0 +1,9 @@
+<p>I søknaden spør vi hva du gjorde mens du var sykmeldt. Var du for eksempel helt eller delvis tilbake i jobb i løpet av perioden? Svarene bruker vi til å beregne sykepengene dine. Hvis sykmeldingen din er lang, kan du søke før den er utløpt.</p>
+
+<p>Du får melding fra oss om dette %DATOER%.</p>
+
+<p>Send gjerne <a target="_blank" href="https://www.nav.no/no/Bedrift/Skjemaer-for-arbeidsgivere/skjemaveileder/vedlegg-bedrift?key=338339">inntektsopplysningene</a> så tidlig som mulig. Da går saksbehandlingen raskere.</p>
+
+<p><strong>Fikk du sykmeldingen på papir hos legen?</strong> <br />Legg den bort. Det du gjør på nett erstatter papiret.</p>
+
+<p><strong>Skal du ut og reise?</strong> <br /><a target="_blank" href="https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/Sykepenger/sykepenger-ved-utenlandsopphold">Les mer om hva du må gjøre for å beholde sykepengene.</a></p>

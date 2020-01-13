@@ -1,0 +1,1 @@
+Prosenten du skrev inn tyder på at du har jobbet mindre enn %ARBEIDSGRAD% %. Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom %MIN% og %MAX%.

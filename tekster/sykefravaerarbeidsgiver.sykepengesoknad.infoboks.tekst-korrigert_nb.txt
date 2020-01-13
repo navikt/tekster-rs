@@ -1,0 +1,1 @@
+Søknaden er fylt ut og sendt til %MOTTAKER% av <strong>%NAVN% %DATO%</strong>, og erstatter tidligere innsendt søknad for samme periode. Dersom du ser at søknaden inneholder feil, må medarbeideren rette dem opp og sende inn søknaden på nytt.

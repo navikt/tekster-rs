@@ -1,0 +1,1 @@
+Du har %ANTALL% oppfølgingsplaner som venter på godkjenning av deg.
