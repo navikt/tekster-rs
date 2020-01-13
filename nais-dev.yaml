@@ -9,8 +9,6 @@ spec:
   image: {{ image }}
   port: 8080
   ingresses:
-    - "https://tjenester-q1.nav.no/syfotekster/api/"
-    - "https://syfotekster-q1.nais.preprod.local/syfotekster/api/"
     - "https://syfotekster-q1.nais.preprod.local/"
   replicas:
     min: 2
