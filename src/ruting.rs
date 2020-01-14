@@ -22,7 +22,7 @@ pub fn tekster() -> Result<HttpResponse> {
 }
 
 #[get("/syfotekster/api/tekster/")]
-pub fn tekster() -> Result<HttpResponse> {
+pub fn tekster_med_slash() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok()
         .content_type("application/json")
         .body(&*TEKSTER))
