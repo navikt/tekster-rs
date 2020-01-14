@@ -28,6 +28,7 @@ fn main() -> std::io::Result<()> {
             .service(ruting::er_klar)
             .service(ruting::er_levende)
             .service(ruting::tekster)
+            .service(ruting::tekster_med_slash)
     })
     .bind("0.0.0.0:8080")?
     .run()
