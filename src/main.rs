@@ -18,13 +18,13 @@ lazy_static! {
     static ref TEKSTER: String = serde_json::to_string(&bygg_tekster().unwrap()).unwrap();
 }
 
-fn main() -> std::io::Result<()> {
+#[actix_rt::main]
+async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=info");
-    env_logger::init();
 
     HttpServer::new(move || {
         App::new()
-            .wrap(middleware::Logger::default())
+            .wrap(middleware::Compress::default())
             .service(ruting::er_klar)
             .service(ruting::er_levende)
             .service(ruting::tekster)
@@ -32,6 +32,7 @@ fn main() -> std::io::Result<()> {
     })
     .bind("0.0.0.0:8080")?
     .run()
+    .await
 
 }
 
