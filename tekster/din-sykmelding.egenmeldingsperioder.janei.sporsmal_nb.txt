@@ -1,1 +1,0 @@
-Vi har registrert at du ble sykmeldt %DATO%. Brukte du egenmelding eller noen annen sykmelding før denne datoen?

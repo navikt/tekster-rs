@@ -1,1 +1,0 @@
-Når sykmeldingsperioden er over den %DATO%, vil du få en SMS eller e-post om at du kan sende søknad om sykepenger.

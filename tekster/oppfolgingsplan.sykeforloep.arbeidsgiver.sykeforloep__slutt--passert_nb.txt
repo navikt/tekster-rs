@@ -1,1 +1,0 @@
-Var %GRAD% % sykmeldt fram til %DATO%

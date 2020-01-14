@@ -18,8 +18,6 @@ FROM alpine:3.11
 WORKDIR /root/
 
 RUN mkdir tekster
-COPY tekster/* tekster/
-COPY .env .env
 COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/syfotekster-rs .
 
 EXPOSE 8080
