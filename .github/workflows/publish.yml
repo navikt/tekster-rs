@@ -17,6 +17,20 @@ jobs:
         with:
           path: target
           key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+      - name: Set up toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: x86_64-unknown-linux-musl
+          override: true
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --target x86_64-unknown-linux-musl
+      - name: Copy binary to working directory
+        run: cp target/x86_64-unknown-linux-musl/release/syfotekster-rs .
       - name: Build and publish Docker image
         env:
           NAME: tekster
