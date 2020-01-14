@@ -28,9 +28,9 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: --target x86_64-unknown-linux-musl
+          args: --release --target x86_64-unknown-linux-musl
       - name: Copy binary to working directory
-        run: ls -l target
+        run: cp target/x86_64-unknown-linux-musl/release/syfotekster-rs .
       - name: Build and publish Docker image
         env:
           NAME: tekster
