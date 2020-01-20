@@ -13,5 +13,5 @@ kun når en endring i logikken kreves. Denne blir publisert som et Dockerimage p
 fra `tekster-rs` og kopierer inn tekstene som brukes i applikasjonen. Dette gjør at vi ikke trenger å bygge appen hver
 gang vi endrer på tekstene. Deployment burde gå raskt slik.
 
-Grunnen til at appen er delt i to slik er fordi `tekster-rs` tar opp mot 7-8 minutter å bygge, hvis logikk i grunn ikke
-endres særlig ofte og vi trenger ikke at applikasjonen bygges mer enn nødvendig!
+Grunnen til at appen er delt i to slik er fordi `tekster-rs` tar opp mot 7-8 minutter å bygge uten cache.
+Hvis logikk i grunn ikke endres særlig ofte og vi trenger ikke at applikasjonen bygges mer enn nødvendig!

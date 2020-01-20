@@ -1,29 +1,40 @@
-use actix_web::{
-    HttpResponse, Result
-};
-use crate::TEKSTER;
+use super::*;
 
-
-#[get("/syfotekster/internal/isAlive")]
-pub async fn er_levende() -> Result<HttpResponse> {
-    Ok(HttpResponse::Ok().finish())
+pub fn ruter(req: Request<Body>, _client: &Client<HttpConnector>) -> ResponseFuture {
+    match (req.method(), req.uri().path()) {
+        (&Method::GET, "/syfotekster/api/tekster") | (&Method::GET, "/syfotekster/api/tekster/") => tekster(),
+        (&Method::GET, "/syfotekster/internal/isAlive") | (&Method::GET, "/syfotekster/internal/isReady") => okay(),
+        _ => ikke_funnet(),
+    }
 }
 
-#[get("/syfotekster/internal/isReady")]
-pub async fn er_klar() -> Result<HttpResponse> {
-    Ok(HttpResponse::Ok().finish())
+fn tekster() -> ResponseFuture {
+    let tekster = Body::from(&TEKSTER[..]);
+    Box::new(future::ok(
+        Response::builder()
+            .status(StatusCode::OK)
+            .header(header::CONTENT_TYPE, "application/json")
+            .body(tekster)
+            .unwrap(),
+    ))
 }
 
-#[get("/syfotekster/api/tekster")]
-pub async fn tekster() -> Result<HttpResponse> {
-    Ok(HttpResponse::Ok()
-        .content_type("application/json")
-        .body(&*TEKSTER))
+fn okay() -> ResponseFuture {
+    let body = Body::from("");
+    Box::new(future::ok(
+        Response::builder()
+            .status(StatusCode::OK)
+            .body(body)
+            .unwrap(),
+    ))
 }
 
-#[get("/syfotekster/api/tekster/")]
-pub async fn tekster_med_slash() -> Result<HttpResponse> {
-    Ok(HttpResponse::Ok()
-        .content_type("application/json")
-        .body(&*TEKSTER))
+fn ikke_funnet() -> ResponseFuture {
+    let body = Body::from("");
+    Box::new(future::ok(
+        Response::builder()
+            .status(StatusCode::NOT_FOUND)
+            .body(body)
+            .unwrap(),
+    ))
 }

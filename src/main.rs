@@ -1,15 +1,13 @@
 #[macro_use]
-extern crate actix_web;
-#[macro_use]
 extern crate lazy_static;
-
-use actix_web::{
-    middleware, App, HttpServer
+use futures::{future, Future};
+use hyper::{
+    client::HttpConnector, rt, service::service_fn, Body, Client, Request,
+    Response, Server, Method, StatusCode, header
 };
-use dotenv;
 use std::collections::HashMap;
-use std::fs::File;
 use std::fs;
+use std::fs::File;
 use std::io::prelude::*;
 
 mod ruting;
@@ -18,22 +16,27 @@ lazy_static! {
     static ref TEKSTER: String = serde_json::to_string(&bygg_tekster().unwrap()).unwrap();
 }
 
-#[actix_rt::main]
-async fn main() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "actix_web=info");
+type GenericError = Box<dyn std::error::Error + Send + Sync>;
+type ResponseFuture = Box<dyn Future<Item = Response<Body>, Error = GenericError> + Send>;
 
-    HttpServer::new(move || {
-        App::new()
-            .wrap(middleware::Compress::default())
-            .service(ruting::er_klar)
-            .service(ruting::er_levende)
-            .service(ruting::tekster)
-            .service(ruting::tekster_med_slash)
-    })
-    .bind("0.0.0.0:8080")?
-    .run()
-    .await
+fn main() {
+    pretty_env_logger::init();
+    let addr: std::net::SocketAddr = "0.0.0.0:8080".parse().unwrap();
 
+    rt::run(future::lazy(move || {
+        let klient = Client::new();
+
+        let ny_service = move || {
+            let klient = klient.clone();
+            service_fn(move |request| ruting::ruter(request, &klient))
+        };
+
+        let server = Server::bind(&addr)
+            .serve(ny_service)
+            .map_err(|e| eprintln!("Server error: {}", e));
+            println!("Lytter på {}", addr);
+            server
+        }));
 }
 
 fn bygg_tekster() -> std::io::Result<HashMap<String, String>> {
