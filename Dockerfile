@@ -6,5 +6,5 @@ RUN mkdir tekster
 COPY ./syfotekster-rs .
 
 EXPOSE 8080
-ENV RUST_LOG=info
+ENV RUST_LOG=warn
 CMD ["./syfotekster-rs"]
