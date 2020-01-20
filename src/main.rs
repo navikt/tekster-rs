@@ -1,5 +1,5 @@
-#[macro_use]
-extern crate lazy_static;
+#[macro_use] extern crate lazy_static;
+#[macro_use] extern crate log;
 use futures::{future, Future};
 use hyper::{
     client::HttpConnector, rt, service::service_fn, Body, Client, Request,
@@ -20,7 +20,7 @@ type GenericError = Box<dyn std::error::Error + Send + Sync>;
 type ResponseFuture = Box<dyn Future<Item = Response<Body>, Error = GenericError> + Send>;
 
 fn main() {
-    pretty_env_logger::init();
+    env_logger::init();
     let addr: std::net::SocketAddr = "0.0.0.0:8080".parse().unwrap();
 
     rt::run(future::lazy(move || {
@@ -34,7 +34,7 @@ fn main() {
         let server = Server::bind(&addr)
             .serve(ny_service)
             .map_err(|e| eprintln!("Server error: {}", e));
-            println!("Lytter på {}", addr);
+            info!("Lytter på {}", addr);
             server
         }));
 }
