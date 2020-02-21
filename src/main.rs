@@ -1,9 +1,7 @@
 #[macro_use] extern crate lazy_static;
 #[macro_use] extern crate log;
-use futures::{future, Future};
 use hyper::{
-    client::HttpConnector, rt, service::service_fn, Body, Client, Request,
-    Response, Server, Method, StatusCode, header
+    service::make_service_fn, service::service_fn, Server
 };
 use std::collections::HashMap;
 use std::fs;
@@ -17,26 +15,25 @@ lazy_static! {
 }
 
 type GenericError = Box<dyn std::error::Error + Send + Sync>;
-type ResponseFuture = Box<dyn Future<Item = Response<Body>, Error = GenericError> + Send>;
+type Result<T> = std::result::Result<T, GenericError>;
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<()> {
     env_logger::init();
-    let addr: std::net::SocketAddr = "0.0.0.0:8080".parse().unwrap();
+    let addr: std::net::SocketAddr = ([0, 0, 0, 0], 8080).into();
+    
+    let ny_service = make_service_fn(move |_| {
+         async {
+             Ok::<_, GenericError>(service_fn(move |req| {
+                 ruting::ruter(req)
+             }))
+         }
+     });
 
-    rt::run(future::lazy(move || {
-        let klient = Client::new();
-
-        let ny_service = move || {
-            let klient = klient.clone();
-            service_fn(move |request| ruting::ruter(request, &klient))
-        };
-
-        let server = Server::bind(&addr)
-            .serve(ny_service)
-            .map_err(|e| eprintln!("Server error: {}", e));
-            info!("Lytter på {}", addr);
-            server
-        }));
+     let server = Server::bind(&addr).serve(ny_service);
+     info!("Lytter på http://{}", addr);
+     server.await?;
+     Ok(())
 }
 
 fn bygg_tekster() -> std::io::Result<HashMap<String, String>> {
@@ -48,15 +45,22 @@ fn bygg_tekster() -> std::io::Result<HashMap<String, String>> {
     let mut tekst_map: HashMap<String, String> = HashMap::new();
     let fil_match = &format!("_{}", tekster_sprak);
 
-    for s in fs::read_dir(tekster_sti)? {
-        if let Ok(sti) = s {
-            if sti.path().to_string_lossy().find(fil_match).is_some() {
-                let mut nokkel = sti.path().file_stem().unwrap().to_os_string().into_string().unwrap();
-                let lengde = nokkel.len();
-                nokkel.truncate(lengde - 3);
-                let mut fil = File::open(sti.path())?;
+    for sti in fs::read_dir(tekster_sti)? {
+        if let Ok(tekstfil) = sti {
+            if tekstfil.path().to_string_lossy().find(fil_match).is_some() {
+                let mut fil = File::open(tekstfil.path())?;
                 let mut innhold = String::new();
                 fil.read_to_string(&mut innhold)?;
+
+                let mut nokkel = match tekstfil.path().file_stem() {
+                    Some(n) => match n.to_os_string().into_string() {
+                        Ok(nokkel) => nokkel,
+                        Err(_) => continue
+                    },
+                    None => continue
+                };
+                let lengde = nokkel.len();
+                nokkel.truncate(lengde - 3);
                 tekst_map.insert(nokkel, innhold);
             }
         }

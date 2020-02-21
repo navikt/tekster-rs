@@ -1,43 +1,45 @@
-use super::*;
+use super::{Result, TEKSTER};
+use hyper::{
+    header, 
+    Body, Method, Request, 
+    Response, StatusCode
+};
 
-pub fn ruter(req: Request<Body>, _client: &Client<HttpConnector>) -> ResponseFuture {
+pub async fn ruter(req: Request<Body>) -> Result<Response<Body>> {
     match (req.method(), req.uri().path()) {
-        (&Method::GET, "/syfotekster/api/tekster") | (&Method::GET, "/syfotekster/api/tekster/") => tekster(),
-        (&Method::GET, "/syfotekster/internal/isAlive") | (&Method::GET, "/syfotekster/internal/isReady") => okay(req),
-        _ => ikke_funnet(req),
+        (&Method::GET, "/syfotekster/api/tekster") | (&Method::GET, "/syfotekster/api/tekster/") => tekster().await,
+        (&Method::GET, "/syfotekster/internal/isAlive") | (&Method::GET, "/syfotekster/internal/isReady") => okay(req).await,
+        _ => ikke_funnet(req).await,
     }
 }
 
-fn tekster() -> ResponseFuture {
+async fn tekster() -> Result<Response<Body>> {
     info!("200 OK! Serverer tekster");
-    let tekster = Body::from(&TEKSTER[..]);
-    Box::new(future::ok(
+    Ok(
         Response::builder()
             .status(StatusCode::OK)
             .header(header::CONTENT_TYPE, "application/json")
-            .body(tekster)
-            .unwrap(),
-    ))
+            .body(Body::from(&TEKSTER[..]))
+            .unwrap()
+    )
 }
 
-fn okay(req: Request<Body>) -> ResponseFuture {
+async fn okay(req: Request<Body>) -> Result<Response<Body>> {
     info!("200 OK! {}", req.uri().path());
-    let body = Body::from("");
-    Box::new(future::ok(
+    Ok(
         Response::builder()
             .status(StatusCode::OK)
-            .body(body)
-            .unwrap(),
-    ))
+            .body("".into())
+            .unwrap()
+    )
 }
 
-fn ikke_funnet(req: Request<Body>) -> ResponseFuture {
+async fn ikke_funnet(req: Request<Body>) -> Result<Response<Body>> {
     warn!("404 Not Found. {} er ikke ei gyldig rute", req.uri().path());
-    let body = Body::from("");
-    Box::new(future::ok(
+    Ok(
         Response::builder()
             .status(StatusCode::NOT_FOUND)
-            .body(body)
-            .unwrap(),
-    ))
+            .body("".into())
+            .unwrap()
+    )
 }
