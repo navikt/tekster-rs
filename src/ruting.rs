@@ -1,4 +1,4 @@
-use super::{Result, TEKSTER};
+use crate::{Result, tekster::TEKSTER};
 use hyper::{
     header, 
     Body, Method, Request, 
